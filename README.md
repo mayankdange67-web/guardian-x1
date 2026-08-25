@@ -1,30 +1,19 @@
-# Guardian X-1: Hybrid Rover & Aerial Flight Platform
+# Guardian X-1 Ecosystem 🚁🤖
 
-Guardian X-1 is a modular, dual-mode autonomous vehicle platform capable of differential ground rovers driving and multirotor aerial flight. Powered by a Raspberry Pi 5 companion computer working in tandem with a SpeedyBee F405 flight controller, the vehicle features dynamic payload deployment, active ToF/IMU hazard detection, and serial MSP control bridging.
+Guardian X-1 is an autonomous, hybrid rover/drone robotics platform. It runs completely offline using a local AI voice engine (Llama 3.2 via Ollama on a Raspberry Pi 5 / Jetson), a real-time WebSocket web server, smartwatch gesture parsing, and smart glasses HUD telemetry.
 
----
+## Features
+- **Local AI Voice Control:** Powered by Whisper (STT) and Llama 3.2 1B/3B (SLM).
+- **Hybrid Autonomy:** Unified code for quadrotor flight and differential ground drive.
+- **Hardware Integrations:** Hailo-8L NPU Vision, Smartwatch disarms, and Web dashboard.
+- **Parametric 3D Prints:** OpenSCAD files included for vibration-damped hardware mounts.
 
-## Key Features
-
-* **Hybrid Kinematics:** Seamless transition between differential N20 ground drive and quadcopter flight states.
-* **Low-Latency Hardware Control:** Direct Linux `gpiod` integration for motor driver H-bridges and payload locking servos.
-* **Flight Controller Bridge:** MSP v2 protocol implementation over high-speed UART (`921600` baud) for raw RC pulse override and arming routines.
-* **Safety & Sensor Fusion:** Real-time obstacle avoidance via VL53L1X ToF rangefinder and BNO085 9-DOF IMU telemetry.
-* **Declarative Parameter Config:** Fully customizable hardware, control, and safety thresholds defined in centralized YAML files.
-
----
-
-## Repository Structure
-
-```text
-guardian-x1/
-├── README.md
-├── .gitignore
-├── config/
-│   └── control_params.yaml    # Master system hardware & control parameters
-└── firmware/
-    └── control/
-        ├── __init__.py
-        ├── flight_bridge.py   # MSP v2 UART protocol interface to SpeedyBee FC
-        ├── rover_controller.py# Differential drive control via gpiod
-        └── state_machine.py   # System state engine & failsafe manager
+## Quick Start
+```bash
+git clone [https://github.com/YOUR_USERNAME/guardian-x1.git](https://github.com/YOUR_USERNAME/guardian-x1.git)
+cd guardian-x1
+pip install -r requirements.txt
+curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
+ollama pull llama3.2:1b
+chmod +x run.sh
+./run.sh
