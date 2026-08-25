@@ -7,5 +7,6 @@ Ground Drivetrain,4x N20 Gearmotors + Wheels,Assembled in Struts,28
 Chassis Frame,Hybrid Carbon + CF-PETG Enclosures,Fully Assembled,50
 Power & Energy,1x CNHL 4S 2200mAh LiPo + UBEC,Commissioned & Fused,35
 Mapping & Sensors,RPLIDAR A1M8, ToF, RGB Camera,Communicating via ROS 2,181
+Connectivity,2x Cellular LTE/eSIM Modules (Robot + Watch),Integrated,45
 Hardware / Wiring,Fasteners, Inserts, Harnesses,Installed,20
-TOTAL,,,600
+TOTAL,,,685
