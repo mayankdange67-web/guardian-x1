@@ -1,2 +1,0 @@
-// WebSockets connection to the Guardian API will go here
-console.log("Guardian X-1 Web UI loaded.");
