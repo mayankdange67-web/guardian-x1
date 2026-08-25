@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+echo "=== Launching Guardian X-1 System Ecosystem ==="
+if ! pgrep -x "ollama" > /dev/null; then
+    echo "[LAUNCH] Starting Ollama local server..."
+    ollama serve &
+    sleep 3
+fi
+echo "[LAUNCH] Starting Control Web Server on port 8080..."
+python3 src/guardian_x1/web_server.py &
+echo "[LAUNCH] Starting Master Robotics Core..."
+python3 src/guardian_x1/state_machine.py
