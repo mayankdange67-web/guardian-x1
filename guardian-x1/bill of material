@@ -1,0 +1,20 @@
+# 📦 Guardian X-1 Optimized Bill of Materials ($847)
+
+| Subsystem | Component | Function / Specification | Est. Cost |
+| :--- | :--- | :--- | :--- |
+| **Compute & AI** | Raspberry Pi 5 (8GB) | Main Companion Computer & ROS 2 Host | $80 |
+| **Compute & AI** | Raspberry Pi AI Kit (Hailo-8L) | 13 TOPS NPU for Real-Time YOLO & Face ID | $70 |
+| **Storage** | M.2 HAT + 128GB NVMe SSD | Fast I/O for Point Clouds & Embedding DB | $45 |
+| **Flight Stack** | SpeedyBee F405 V4 55A Stack | Flight Controller + 4-in-1 ESC (MAVLink UART) | $75 |
+| **Aerial Propulsion** | 4x EMAX ECO II 2207 Motors | 1900KV Brushless Flight Motors | $56 |
+| **Ground Drivetrain** | 4x N20 Gearmotors + Wheels | Micro Ground Drive Motors + TB6612FNG Driver | $28 |
+| **Chassis Frame** | 5"/7" Hybrid Carbon Frame | Carbon Fiber Mainplate + CF-PETG/TPU Mounts | $50 |
+| **Power & Energy** | 2x CNHL 4S 2200mAh 100C LiPo | System Power + 5V/12V UBEC Voltage Regulation | $65 |
+| **Mapping & LiDAR** | RPLIDAR A1M8 360° LiDAR | 12m Range 2D Laser Mapping & Navigation | $99 |
+| **Depth Perception** | Arducam ToF Camera | 3D Depth Sensing & Obstacle Point-Clouds | $60 |
+| **Thermal Vision** | MLX90640 Thermal Array | 32x24 IR Thermal Heat-Map Tracking | $38 |
+| **Radar Sensing** | HLK-LD2410 24GHz Radar | Micro-Motion & Presence Radar Sensor | $14 |
+| **Optical Vision** | IMX219 1080p Camera Module | RGB Input for Face Identification & Object Tracking | $22 |
+| **Audio Stack** | USB Dual Mic + 3W Speaker | Noise-Canceling Speech Input & Local TTS | $30 |
+| **Hardware / Wiring** | Fasteners & Wire Harness | M3 Screws, Heat-Set Inserts, XT60 Connectors | $20 |
+| **TOTAL** | | | **$847** |
