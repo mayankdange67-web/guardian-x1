@@ -33,6 +33,16 @@ flight_stack:
   serial_port: "/dev/ttyAMA0"
   baudrate: 921600
 
+# NEW: Cellular / eSIM Configuration for Robot & Watch
+cellular:
+  enabled: true
+  apn: "iot.econnect.com"
+  modem_port: "/dev/ttyUSB2"
+  baudrate: 115200
+  fallback_timeout_sec: 5.0
+  cloud_mqtt_broker: "mqtt.guardian-ecosystem.io"
+  cloud_mqtt_port: 8883
+
 control_web:
   host: "0.0.0.0"
   port: 8080
