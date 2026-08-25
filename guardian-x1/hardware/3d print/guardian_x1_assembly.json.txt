@@ -1,0 +1,100 @@
+{
+  "project": "Guardian X-1",
+  "version": "1.0.0",
+  "units": "mm",
+  "print_materials": {
+    "structural": "PA6-CF",
+    "enclosure": "CF-PETG",
+    "tires": "TPU 95A"
+  },
+  "parts": [
+    {
+      "part_id": "chassis_floor",
+      "stl_filename": "chassis_floor.stl",
+      "material": "CF-PETG",
+      "infill_percent": 35,
+      "walls": 4,
+      "description": "Main electronic deck and battery bay floor."
+    },
+    {
+      "part_id": "top_hull",
+      "stl_filename": "top_hull.stl",
+      "material": "CF-PETG",
+      "infill_percent": 30,
+      "walls": 3,
+      "description": "Upper protective canopy and sensor mounting deck."
+    },
+    {
+      "part_id": "front_fascia",
+      "stl_filename": "front_fascia.stl",
+      "material": "CF-PETG",
+      "infill_percent": 35,
+      "walls": 4,
+      "description": "Front sensor bezel housing cameras and radar."
+    },
+    {
+      "part_id": "main_drawer",
+      "stl_filename": "main_drawer.stl",
+      "material": "CF-PETG",
+      "infill_percent": 35,
+      "walls": 4,
+      "description": "Aft sliding utility and battery compartment drawer."
+    },
+    {
+      "part_id": "secret_drawer",
+      "stl_filename": "secret_drawer.stl",
+      "material": "CF-PETG",
+      "infill_percent": 30,
+      "walls": 3,
+      "description": "Side-swinging payload compartment."
+    },
+    {
+      "part_id": "side_rail_left",
+      "stl_filename": "side_rail_left.stl",
+      "material": "CF-PETG",
+      "infill_percent": 40,
+      "walls": 5,
+      "description": "Left structural spine and wheel pivot housing."
+    },
+    {
+      "part_id": "side_rail_right",
+      "stl_filename": "side_rail_right.stl",
+      "material": "CF-PETG",
+      "infill_percent": 40,
+      "walls": 5,
+      "description": "Right structural spine and wheel pivot housing."
+    },
+    {
+      "part_id": "wing_arm",
+      "stl_filename": "wing_arm.stl",
+      "material": "PA6-CF",
+      "infill_percent": 45,
+      "walls": 5,
+      "description": "High-stress motor boom arm for 2807 brushless motors (x4 required)."
+    },
+    {
+      "part_id": "wheel_strut",
+      "stl_filename": "wheel_strut.stl",
+      "material": "PA6-CF",
+      "infill_percent": 40,
+      "walls": 4,
+      "description": "N20 motor housing and ground drive strut (x4 required)."
+    },
+    {
+      "part_id": "tyre",
+      "stl_filename": "tyre.stl",
+      "material": "TPU 95A",
+      "infill_percent": 25,
+      "walls": 3,
+      "description": "Flexible treaded rover tyre (x4 required)."
+    },
+    {
+      "part_id": "wheel_hub",
+      "stl_filename": "wheel_hub.stl",
+      "material": "CF-PETG",
+      "infill_percent": 35,
+      "walls": 4,
+      "description": "Rigid N20 axle mount hub (x4 required)."
+    }
+  ]
+}

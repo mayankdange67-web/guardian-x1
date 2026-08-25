@@ -1,0 +1,12 @@
+# Guardian X-1 Architecture Specification
+
+## Overview
+The Guardian X-1 ecosystem integrates an autonomous hybrid rover/drone platform with a local AI voice engine (Llama 3.2 via Ollama), a real-time WebSocket web server, smart glasses HUD rendering, smartwatch gesture parsing, and automated RAM/cache memory management.
+
+## Node Topology
+1. **Robot Core (`guardian_x1`)**: Controls low-level PWM motors, serial flight bridge, and master safety loop.
+2. **AI Engine (`ai_engine`)**: Runs vision detection (Hailo-8L / YOLO) and outputs spatial target coordinates.
+3. **Voice AI (`voice_ai`)**: Local offline Voice Assistant using Whisper (STT), Llama 3.2 (SLM), and Piper/pyttsx3 (TTS).
+4. **Smartwatch Node (`smartwatch`)**: Captures wrist gesture IMU telemetry and emergency disarm signals.
+5. **Smart Glasses Node (`smart_glasses`)**: Converts telemetry and target bounding boxes into HUD frames.
+6. **Control Web (`web_server.py`)**: Central WebSocket hub linking mobile/laptop control clients to all nodes.
