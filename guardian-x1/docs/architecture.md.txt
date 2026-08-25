@@ -10,3 +10,34 @@ The Guardian X-1 ecosystem integrates an autonomous hybrid rover/drone platform 
 4. **Smartwatch Node (`smartwatch`)**: Captures wrist gesture IMU telemetry and emergency disarm signals.
 5. **Smart Glasses Node (`smart_glasses`)**: Converts telemetry and target bounding boxes into HUD frames.
 6. **Control Web (`web_server.py`)**: Central WebSocket hub linking mobile/laptop control clients to all nodes.
+
+The Guardian X-1 operates on a hybrid distributed architecture spanning local onboard edge compute, local RF mesh, and wide-area cellular/eSIM cloud connectivity.
+
+┌────────────────────────────────────────────────────────┐
+│                   Wearer / Operator                    │
+│   [Smartwatch (eSIM/BLE)]  ◄──►  [Mobile / Web UI]     │
+└───────────────────────────┬────────────────────────────┘
+│ Cellular LTE / MQTT / WebSocket
+▼
+┌────────────────────────────────────────────────────────┐
+│                   Guardian X-1 Core                    │
+│                                                        │
+│  ┌───────────────────────┐   ┌──────────────────────┐  │
+│  │   Raspberry Pi 5 (8GB)│   │   Hailo-8L NPU (13T) │  │
+│  │   - ROS 2 Humble      │   │   - YOLOv8 / Face ID │  │
+│  │   - State Machine     │   │   - Local Inference  │  │
+│  └──────────┬────────────┘   └──────────┬───────────┘  │
+│             │                           │              │
+│             ├───────────┬───────────────┴───┐          │
+│             ▼           ▼                   ▼          │
+│       [RPLIDAR]    [Arducam ToF]    [Cellular / eSIM]  │
+│       (Mapping)    (Depth Sensing)  (LTE Telemetry)    │
+│             │           │                   │          │
+│             └───────────┴───────────────┬───┘          │
+│                                         ▼              │
+│                                 [Flight Stack]         │
+│                                 (SpeedyBee F405)       │
+└─────────────────────────────────────────┬──────────────┘
+▼
+[Propulsion & Drivetrain]
+(EMAX Motors & N20 Wheels)
