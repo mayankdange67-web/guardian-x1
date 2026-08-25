@@ -1,19 +1,18 @@
-# Guardian X-1 Ecosystem 🚁🤖
+# 🛡️ Guardian X-1: Hybrid Autonomous Platform (v1.2.0)
 
-Guardian X-1 is an autonomous, hybrid rover/drone robotics platform. It runs completely offline using a local AI voice engine (Llama 3.2 via Ollama on a Raspberry Pi 5 / Jetson), a real-time WebSocket web server, smartwatch gesture parsing, and smart glasses HUD telemetry.
+The **Guardian X-1** is an open-source, hybrid autonomous rover-drone platform featuring dual-mode mobility (aerial flight + ground drive), local edge AI inference (Raspberry Pi 5 + Hailo-8L NPU), and wide-area **eSIM/LTE cellular failover** across both the robot core and operator smartwatch.
 
-## Features
-- **Local AI Voice Control:** Powered by Whisper (STT) and Llama 3.2 1B/3B (SLM).
-- **Hybrid Autonomy:** Unified code for quadrotor flight and differential ground drive.
-- **Hardware Integrations:** Hailo-8L NPU Vision, Smartwatch disarms, and Web dashboard.
-- **Parametric 3D Prints:** OpenSCAD files included for vibration-damped hardware mounts.
+## 📦 Quick Build Summary
+* **Target Budget:** $685 (Optimized Lean Spec)
+* **Core Compute:** Raspberry Pi 5 (8GB) + Hailo-8L NPU (13 TOPS)
+* **Connectivity:** Local Wi-Fi Mesh + Dual LTE/eSIM Modules (Robot & Watch)
+* **Chassis:** Hybrid Carbon Fiber + CF-PETG Enclosures & TPU Tires
+* **Sensors:** RPLIDAR A1M8, Arducam ToF, IMX219 Optical Camera
 
-## Quick Start
+## 🚀 Getting Started
+Clone the repository and launch the ecosystem:
 ```bash
-git clone [https://github.com/YOUR_USERNAME/guardian-x1.git](https://github.com/YOUR_USERNAME/guardian-x1.git)
+git clone [https://github.com/your-repo/guardian-x1.git](https://github.com/your-repo/guardian-x1.git)
 cd guardian-x1
 pip install -r requirements.txt
-curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
-ollama pull llama3.2:1b
-chmod +x run.sh
 ./run.sh
