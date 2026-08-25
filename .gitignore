@@ -1,0 +1,49 @@
+# ==========================================
+# Guardian X-1 Project Git Ignore Rules
+# ==========================================
+
+# --- Operating System Junk ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# --- Python & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# --- IDEs & Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# --- 3D Printing & Slicer Output ---
+*.gcode
+*.3mf.bak
+*.curaproj.bak
+*.gcode.gz
+
+# --- OpenSCAD & CAD Temp Files ---
+*.echo
+.deps/
+*.stl.bak
+
+# --- Hardware / Raspberry Pi Log Files ---
+*.log
+*.syslog
