@@ -1,0 +1,11 @@
+Subsystem,Component,Status,Est. Cost (USD)
+Compute & AI,Raspberry Pi 5 (8GB) + Hailo-8L NPU,Integrated & Tested,150
+Storage,M.2 HAT + 128GB NVMe SSD,Flashed & Booted,45
+Flight Stack,SpeedyBee F405 V4 55A Stack,Wired & Bench-Tested,75
+Aerial Propulsion,4x EMAX ECO II 2207 Motors,Mounted to Booms,56
+Ground Drivetrain,4x N20 Gearmotors + Wheels,Assembled in Struts,28
+Chassis Frame,Hybrid Carbon + CF-PETG Enclosures,Fully Assembled,50
+Power & Energy,1x CNHL 4S 2200mAh LiPo + UBEC,Commissioned & Fused,35
+Mapping & Sensors,RPLIDAR A1M8, ToF, RGB Camera,Communicating via ROS 2,181
+Hardware / Wiring,Fasteners, Inserts, Harnesses,Installed,20
+TOTAL,,,600
