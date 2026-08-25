@@ -48,3 +48,7 @@ Power Regulation: Connect the dual CNHL 4S 2200mAh LiPo batteries via an XT60 ha
 Step-Down Rails: Route power from the 5V/12V UBEC regulator to feed the Raspberry Pi 5, Hailo NPU, and auxiliary sensor bus.
 
 UART Link: Connect the SpeedyBee flight controller UART output to the Raspberry Pi 5 GPIO UART pins (Pins 8/10 or /dev/ttyAMA0) at 921600 baud for MAVLink telemetry streaming.
+
+## Step 6: Cellular & eSIM Module Integration
+1. **Robot LTE Modem:** Mount the LTE USB/M.2 module into the internal electronics bay. Connect the antenna leads to the external chassis cutouts on the `top_hull.stl` and route the USB serial line to `/dev/ttyUSB2`. Insert the active IoT nano-eSIM.
+2. **Smartwatch eSIM:** Solder or slot the wearable nano-eSIM into the smartwatch core PCB during wristband casing assembly to enable remote wearer telemetry over cellular fallback.
