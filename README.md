@@ -1,25 +1,30 @@
-# Tactical Drone-Rover (`drone_rover.scad`)
+# Guardian X-1: Hybrid Rover & Aerial Flight Platform
 
-A parametric, 3D-printable OpenSCAD platform for a hybrid ground-and-air vehicle. Features deployable wheel struts with co-axial direct-drive motor housings, modular chassis rails, payload bays, and direct integration with a SIM-enabled Smartwatch for remote telemetry and control.
+Guardian X-1 is a modular, dual-mode autonomous vehicle platform capable of differential ground rovers driving and multirotor aerial flight. Powered by a Raspberry Pi 5 companion computer working in tandem with a SpeedyBee F405 flight controller, the vehicle features dynamic payload deployment, active ToF/IMU hazard detection, and serial MSP control bridging.
 
 ---
 
 ## Key Features
 
-* **Dual Kinematics**: Y-axis folding wheel struts transition seamlessly between Ground Mode (0°) and Flight Fold Mode (90°).
-* **Co-Axial Direct Drive**: Micro N20 gearmotors reside inside the strut body along the X-axis, driving 3mm D-shaft wheel hubs directly.
-* **Quad-Rotor Flight**: Integrated mounting arms for 2807 brushless motors with 7" propellers.
-* **Cellular Smartwatch Connectivity**: LTE/eSIM-enabled smartwatch interface for remote real-time telemetry polling and command execution over cellular data.
-* **Onboard Electronics Bay**: Modular housing for Raspberry Pi, flight controller/ESC stack, 4S/6S battery pack, and front ToF optical sensors.
-* **Payload Mechanisms**: Servo-locked primary drawer and hidden secondary storage tray.
-* **FDM Print Optimized**: Preset single-part isolation modes and pre-oriented flat layouts at Z=0 for support-free printing.
+* **Hybrid Kinematics:** Seamless transition between differential N20 ground drive and quadcopter flight states.
+* **Low-Latency Hardware Control:** Direct Linux `gpiod` integration for motor driver H-bridges and payload locking servos.
+* **Flight Controller Bridge:** MSP v2 protocol implementation over high-speed UART (`921600` baud) for raw RC pulse override and arming routines.
+* **Safety & Sensor Fusion:** Real-time obstacle avoidance via VL53L1X ToF rangefinder and BNO085 9-DOF IMU telemetry.
+* **Declarative Parameter Config:** Fully customizable hardware, control, and safety thresholds defined in centralized YAML files.
 
 ---
 
-## Smartwatch LTE Connectivity & Control
+## Repository Structure
 
-The onboard Raspberry Pi communicates with a SIM/eSIM-enabled cellular smartwatch over an encrypted MQTT/WebSockets broker over cellular networks.
-
-### Architecture
 ```text
-[ Smartwatch (eSIM/LTE) ] <---> [ Cloud MQTT / WebSockets Broker ] <---> [ 4G LTE HAT / Pi Onboard ]
+guardian-x1/
+├── README.md
+├── .gitignore
+├── config/
+│   └── control_params.yaml    # Master system hardware & control parameters
+└── firmware/
+    └── control/
+        ├── __init__.py
+        ├── flight_bridge.py   # MSP v2 UART protocol interface to SpeedyBee FC
+        ├── rover_controller.py# Differential drive control via gpiod
+        └── state_machine.py   # System state engine & failsafe manager
