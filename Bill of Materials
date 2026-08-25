@@ -1,0 +1,86 @@
+# Guardian X-1 $900 Cap Bill of Materials (BOM)
+
+Project Guardian X-1 Tactical Hybrid Drone-Rover  
+Revision v2.1 ($900 Strict Budget Tier)  
+Total Hard Cost $888.00 USD  
+Key Highlights HD Digital FPV • Raspberry Pi 5 (8GB) Edge Gateway • T-Motor Propulsion • High-Torque Planetary Kinematics • BNO085 9-DOF IMU
+
+---
+
+## 1. High-Performance Engineering Materials
+
+ Component  Subsystem  Recommended Material  Est. Weight  Print Specs  Infill  Purpose & Vendor  Cost 
+ ---  ---  ---  ---  ---  --- 
+ Main Chassis Floor, Rails, Hull  Polymaker PolyMax PET-CF  320g  40% Gyroid, 4 Wall Lines  High stiffness & thermal resistance  $35.00 
+ Folding Arms & Wheel Struts  Bambu Lab PA6-CF  180g  60% Rectilinear, 5 Wall Lines  Maximum tensile & impact strength  $25.00 
+ All 4 Tyres  NinjaTek NinjaFlex TPU  90g  15% Concentric, 3 Wall Lines  High traction & vibration damping  $15.00 
+ Subtotal      $75.00 
+
+---
+
+## 2. Flight Avionics, Propulsion & Digital HD Video
+
+ Item  Specification  Model  Qty  Notes  Specifications  Cost 
+ ---  ---  ---  ---  --- 
+ Flight Controller Stack  SpeedyBee F405 V4 55A 3-6S 4-in-1 Stack  1  Onboard barometer, TVS protection, Bluetooth config  $115.00 
+ Brushless Motors  T-Motor C2807 1300KV Motors  4  Precision Japanese bearings ($28ea)  $112.00 
+ HD Digital VTX  Camera  DJI O3 Air Unit (4K60 FPS Recording)  1  Real-time 1080p video feed & high-def onboard DVR  $199.00 
+ Propellers  Master Airscrew 3-Blade 7x4.5x3 Stealth Props  2 Pairs  Reinforced polycarbonate impact-resistant props  $12.00 
+ Control Link  BetaFPV SuperD ELRS 2.4GHz Diversity Receiver  1  Dual TCXO antennas for link redundancy  $20.00 
+ Subtotal     $458.00 
+
+---
+
+## 3. Precision Ground Kinematics & Actuators
+
+ Item  Specification  Model  Qty  Notes  Specifications  Cost 
+ ---  ---  ---  ---  --- 
+ Drive Motors  Pololu 12V 300RPM N20 Planetary Gearmotors  4  All-steel planetary gearbox in-line axles  $52.00 
+ Motor Controllers  Pololu Dual MAX14870 H-Bridge Drivers  2  2.5A peak per channel, thermal shutdown  $20.00 
+ Locking Servo  Savöx SH-0255MG Coreless Metal-Gear Servo  1  Micro 9g size, 3.9 kg-cm locking torque  $33.00 
+ Subtotal     $105.00 
+
+---
+
+## 4. Edge Computing Gateway & Precision Sensors
+
+ Item  Specification  Model  Qty  Notes  Specifications  Cost 
+ ---  ---  ---  ---  --- 
+ Companion Computer  Raspberry Pi 5 (8GB RAM)  1  Edge processing, AI object tracking, gateway  $75.00 
+ Pi Storage & Cooling  Pi 5 Active Cooler + NVMe HAT & 128GB SSD  1 Set  High-speed telemetry logs & active cooling  $28.00 
+ Precision Navigation IMU  Adafruit BNO085 9-DOF AHRS IMU  1  Sensor fusion for accurate dead-reckoning tracking  $20.00 
+ Obstacle Sensor  VL53L1X Long-Range Time-of-Flight Sensor  1  Up to 4m distance detection inside fascia  $12.00 
+ Subtotal     $135.00 
+
+---
+
+## 5. Power Architecture & High-Discharge Battery
+
+ Item  Specification  Model  Qty  Notes  Specifications  Cost 
+ ---  ---  ---  ---  --- 
+ Main Battery  Tattu R-Line v5 6S 3000mAh 120C LiPo  1  Compact form factor fitting central payload bay  $68.00 
+ Power Regulator  Matek Systems PDB-HEX with Dual BEC (5V12V)  1  Filtered power rails for Pi 5 and DJI O3 Unit  $22.00 
+ Subtotal     $90.00 
+
+---
+
+## 6. Fasteners & Structural Hardware
+
+ Item  Specification  Qty  Notes  Cost 
+ ---  ---  ---  ---  --- 
+ Fastener Kit  Grade 12.9 Alloy Steel M3 Hardware Set  1 Set  M3x6, M3x8, M3x12, M3x18 socket head screws  $15.00 
+ Inserts & Magnets  Knurled Brass Heat-Set Inserts + N52 Magnets  1 Set  M3 x 4mm x 5mm inserts (40x) & 8x3mm magnets (10x)  $10.00 
+ Subtotal     $25.00 
+
+---
+
+## Total Budget Summary
+
+```text
+1. Materials & Composites    $ 75.00
+2. Flight Avionics & HD VTX  $458.00
+3. Kinematics & Actuators    $105.00
+4. Edge Gateway & Sensors    $135.00
+5. Power Architecture        $90.00 6. Fasteners & Hardware$ 25.00
+-------------------------------------
+EXACT TOTAL COST             $888.00 USD  (UNDER $900 CAP)
