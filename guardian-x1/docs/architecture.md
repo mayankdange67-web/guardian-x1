@@ -65,3 +65,12 @@ The Guardian X-1 features a distributed, edge-computed ROS 2 system architecture
 /voice_ai_node: Local voice processing pipeline wrapping Speech-to-Text (base.en), Ollama LLM (llama3.2:3b), and Text-to-Speech synthesis.
 
 /watch_node: Wearable interaction node processing biometric streams and emergency gesture overrides over BLE or eSIM.
+
+
+
+Failover Logic
+Primary Link (Wi-Fi Mesh / Direct WebSocket): Direct high-bandwidth telemetry and live H.264 video stream to web_ui at http://<robot_ip>:8080.
+
+Secondary Link (Cellular LTE / eSIM Failover): Automatically activated when Wi-Fi ping latency exceeds fallback_timeout_sec: 5.0 or loses link. Strips heavy video streams and transmits essential telemetry JSON packets over encrypted MQTT.
+
+Failsafe (Heartbeat Timeout): If both Wi-Fi and eSIM links fail for >1.0s, the state machine triggers auto-hover, disengages ground drive, and initiates Return-To-Launch (RTL) at 5.0m altitude.
