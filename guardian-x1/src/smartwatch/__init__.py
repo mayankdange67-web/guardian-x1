@@ -1,8 +1,7 @@
 """
-Smartwatch module for Guardian X-1 ecosystem.
-Exposes watch node interface for gesture and remote vehicle control.
+Guardian X-1 Smartwatch Companion Node Package.
 """
 
-from .watch_node import SmartwatchNode
+from .watch_node import SmartwatchWatchNode
 
-__all__ = ["SmartwatchNode"]
+__all__ = ["SmartwatchWatchNode"]
