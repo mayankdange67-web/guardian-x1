@@ -33,7 +33,6 @@ flight_stack:
   serial_port: "/dev/ttyAMA0"
   baudrate: 921600
 
-# NEW: Cellular / eSIM Configuration for Robot & Watch
 cellular:
   enabled: true
   apn: "iot.econnect.com"
