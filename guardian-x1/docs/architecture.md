@@ -1,24 +1,18 @@
-# Guardian X-1 Architecture Specification
+# Guardian X-1 System Architecture (v1.2.0)
 
-## Overview
-The Guardian X-1 ecosystem integrates an autonomous hybrid rover/drone platform with a local AI voice engine (Llama 3.2 via Ollama), a real-time WebSocket web server, smart glasses HUD rendering, smartwatch gesture parsing, and automated RAM/cache memory management.
+The Guardian X-1 features a distributed, edge-computed ROS 2 system architecture designed for dual-mode aerial/ground operations, real-time vision inference, and wide-area cellular telemetry failover.
 
-## Node Topology
-1. **Robot Core (`guardian_x1`)**: Controls low-level PWM motors, serial flight bridge, and master safety loop.
-2. **AI Engine (`ai_engine`)**: Runs vision detection (Hailo-8L / YOLO) and outputs spatial target coordinates.
-3. **Voice AI (`voice_ai`)**: Local offline Voice Assistant using Whisper (STT), Llama 3.2 (SLM), and Piper/pyttsx3 (TTS).
-4. **Smartwatch Node (`smartwatch`)**: Captures wrist gesture IMU telemetry and emergency disarm signals.
-5. **Smart Glasses Node (`smart_glasses`)**: Converts telemetry and target bounding boxes into HUD frames.
-6. **Control Web (`web_server.py`)**: Central WebSocket hub linking mobile/laptop control clients to all nodes.
+---
 
-The Guardian X-1 operates on a hybrid distributed architecture spanning local onboard edge compute, local RF mesh, and wide-area cellular/eSIM cloud connectivity.
+## System Topology Diagram
 
+```text
 ┌────────────────────────────────────────────────────────┐
 │                   Wearer / Operator                    │
 │   [Smartwatch (eSIM/BLE)]  ◄──►  [Mobile / Web UI]     │
 └───────────────────────────┬────────────────────────────┘
-│ Cellular LTE / MQTT / WebSocket
-▼
+                            │ Cellular LTE / MQTT / WebSocket
+                            ▼
 ┌────────────────────────────────────────────────────────┐
 │                   Guardian X-1 Core                    │
 │                                                        │
@@ -38,6 +32,6 @@ The Guardian X-1 operates on a hybrid distributed architecture spanning local on
 │                                 [Flight Stack]         │
 │                                 (SpeedyBee F405)       │
 └─────────────────────────────────────────┬──────────────┘
-▼
-[Propulsion & Drivetrain]
-(EMAX Motors & N20 Wheels)
+                                          ▼
+                               [Propulsion & Drivetrain]
+                               (EMAX Motors & N20 Wheels)
