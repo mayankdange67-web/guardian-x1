@@ -11,9 +11,9 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from sensor_msgs.msg import LaserScan
 
-class StateMachineNode(Node):
+class StateMachine(Node):
     def __init__(self):
-        super().__init__('state_machine_node')
+        super().__init__('state_machine')
         self.get_logger().info("Initializing Guardian X-1 Master State Machine Core...")
 
         # System States: GROUND_ROVER, AERIAL_FLIGHT, EMERGENCY_RTL, FAILSAFE_LAND
@@ -64,7 +64,7 @@ class StateMachineNode(Node):
         # Obstacle avoidance check in Ground Rover Mode
         if self.current_state == "GROUND_ROVER":
             if self.obstacle_distance_cm <= self.emergency_brake_cm:
-                self.get_logger().warn(f"[OBSTACLE] Emergency obstacle at {self.obstacle_distance_cm:.1f} cm! Halting rover.")
+                self.get_logger().warn(f"[OBSTACLE] Emergency brake triggered at {self.obstacle_distance_cm:.1f} cm!")
 
         # Publish state heartbeat
         payload = {
@@ -79,7 +79,7 @@ class StateMachineNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = StateMachineNode()
+    node = StateMachine()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
