@@ -5,11 +5,8 @@ Monitors network interfaces (wwan0/ppp0), signal health, APN connections,
 and handles emergency MQTT failover over LTE when local Wi-Fi mesh drops out.
 """
 
-import os
 import json
-import time
 import subprocess
-import yaml
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -81,7 +78,6 @@ class CellularManager(Node):
     def handle_local_telemetry(self, msg: String):
         """Forwards telemetry payload to MQTT Cloud Broker if LTE link is active."""
         if self.is_connected:
-            # Transmit high-level telemetry over cellular MQTT bridge
             pass
 
 def main(args=None):
