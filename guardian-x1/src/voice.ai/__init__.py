@@ -1,6 +1,6 @@
 """
-Guardian X-1 Voice AI Subsystem
-Exposes local STT, TTS, and LLM-backed voice assistant capabilities.
+Guardian X-1 Local Voice AI Package.
+Provides local STT, TTS, and Ollama LLM natural language interaction.
 """
 
 from .speech_to_text import SpeechToText
@@ -10,5 +10,6 @@ from .voice_assistant import VoiceAssistant
 __all__ = [
     "SpeechToText",
     "TextToSpeech",
-    "VoiceAssistant"
+    "VoiceAssistant",
 ]
+__version__ = "1.2.0"
