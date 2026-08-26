@@ -1,8 +1,7 @@
 """
-AI Engine module for Guardian X-1 ecosystem.
-Provides Hailo-8L NPU acceleration, object detection, and target tracking pipelines.
+Guardian X-1 Hailo-8L Edge AI Acceleration Package.
 """
 
-from .inference_node import VisionAIEngine
+from .hailo_yolo_node import HailoYoloNode
 
-__all__ = ["VisionAIEngine"]
+__all__ = ["HailoYoloNode"]
