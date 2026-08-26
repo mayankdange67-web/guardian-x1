@@ -8,9 +8,9 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 
-class RoverControllerNode(Node):
+class RoverController(Node):
     def __init__(self):
-        super().__init__('rover_controller_node')
+        super().__init__('rover_controller')
         self.get_logger().info("Initializing TB6612FNG Ground Drivetrain Controller...")
 
         self.declare_parameter('pins.gpio_chip', '/dev/gpiochip4')
@@ -34,7 +34,7 @@ class RoverControllerNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = RoverControllerNode()
+    node = RoverController()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
