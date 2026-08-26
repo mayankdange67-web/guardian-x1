@@ -4,14 +4,13 @@ Guardian X-1 MAVLink Flight Controller Serial Bridge Node
 Communicates with SpeedyBee F405 V4 Flight Controller over UART6 (/dev/ttyAMA0 @ 921600 baud).
 """
 
-import time
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-class FlightBridgeNode(Node):
+class FlightBridge(Node):
     def __init__(self):
-        super().__init__('flight_bridge_node')
+        super().__init__('flight_bridge')
         self.get_logger().info("Initializing SpeedyBee F405 V4 MAVLink Serial Bridge...")
 
         self.declare_parameter('flight_stack.serial_port', '/dev/ttyAMA0')
@@ -50,7 +49,7 @@ class FlightBridgeNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = FlightBridgeNode()
+    node = FlightBridge()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
