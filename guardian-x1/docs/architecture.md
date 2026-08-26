@@ -35,3 +35,17 @@ The Guardian X-1 features a distributed, edge-computed ROS 2 system architecture
                                           ▼
                                [Propulsion & Drivetrain]
                                (EMAX Motors & N20 Wheels)
+
+
+/hailo_yolo_node ───────► /guardian/vision/detections (DetectionArray)
+                                     │
+/rplidar_node ──────────► /scan (LaserScan) ──┐
+                                             ▼
+/arducam_tof_node ──────► /depth/points ────► /state_machine
+                                             │
+/cellular_manager ──────► /guardian/cellular ┘
+                                             │
+                                             ├─► /flight_bridge ──► MAVLink (/dev/ttyAMA0)
+                                             └─► /rover_controller ─► GPIO / PWM (TB6612FNG)
+
+                                             
