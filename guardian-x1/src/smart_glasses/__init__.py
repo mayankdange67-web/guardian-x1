@@ -1,6 +1,5 @@
 """
-Smart Glasses module for Guardian X-1 ecosystem.
-Exposes glasses node interface for HUD telemetry rendering and voice command handling.
+Guardian X-1 AR Smart Glasses Node Package.
 """
 
 from .glasses_node import SmartGlassesNode
