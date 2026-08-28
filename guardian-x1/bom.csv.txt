@@ -1,0 +1,19 @@
+Category,Item Description,Part / Component Model,Qty,Est. Unit Cost ($),Est. Total ($),System Function / Notes
+Compute,Main Mission Computer,Raspberry Pi 5 (8GB RAM),1,80.00,80.00,Runs ROS 2 core nodes LLM local inference & vision pipelines
+Compute,NPU Neural Accelerator Module,Hailo-8L M.2 AI Acceleration Module (26 TOPS),1,70.00,70.00,Hardware 8-bit YOLOv8 and ViT-Nano zero-copy inference
+Microcontroller,Network & Hardware Co-Processor,ESP32-S3-WROOM-1U-N16R8,1,4.50,4.50,Dual-core 240MHz hardware bridge high-speed UART & motor PWM
+Storage,High-Speed NVMe/USB Cache SSD,Verbatim Vx500 External SSD (512GB),1,45.00,45.00,Persistent log bags user profiles face embeddings & cache
+Vision,Front Stereo & Face Recognition Camera,Dual IMX219 / OV5647 1080p MIPI CSI Modules,1,24.00,24.00,Facial structural feature extraction & target Re-ID tracking
+Vision,Ground-Facing Friction Camera,OV7670 / GC0308 Wide Angle Camera,1,6.00,6.00,Ground surface patch input for ViT-Nano friction prediction
+Display,Front Transparent HUD Display,1.51-inch Transparent OLED Display (SSD1309 SPI/I2C),1,18.50,18.50,Tactical overlay telemetry HUD & facial lock status display
+Cellular (Vehicle),Vehicle LTE/5G SIM Failover Card,Quectel EG25-G Mini PCIe / SIM800L Module,1,28.00,28.00,Backup cellular communications for remote ground vehicle
+Smartwatch,Smartwatch Wearable Compute Unit,ESP32-S3-MINI-1 or nRF52840 SoC,1,6.00,6.00,Wrist-worn processing biometrics render & haptic motor control
+Smartwatch Cellular,Embedded eSIM Module (Smartwatch),MFF2 eSIM Chip (ST33G1M5 / SIMCom eSIM Ready),1,3.50,3.50,Independent cellular subscriber connectivity for wrist watch
+Smartwatch Display,Smartwatch Circular UI Panel,1.28-inch GC9A01 Circular Touch OLED/LCD,1,8.00,8.00,Displays kinetic mode operator heart rate & eSIM link state
+Smartwatch Biometrics,Optical PPG Heart Rate & SpO2 Sensor,MAX30102 / MAX30101 Sensor Breakout,1,3.20,3.20,Operator pulse rate stress levels & vital signs telemetry
+Smartwatch Haptics,LRA Haptic Vibration Motor,Linear Resonant Actuator (LRA 1030),1,1.80,1.80,Tactile directional prompts hazard alerts & E-Stop confirmation
+Actuation,Drive Wheel Motors w/ Encoders,12V DC Metal Gearmotors w/ Optical Encoders,4,14.00,56.00,Skid-steer rover propulsion with wheel-speed feedback
+Power,High-Discharge LiPo Battery,4S 14.8V 5000mAh 45C LiPo Pack,1,42.00,42.00,Main vehicle compute and motor power bus
+RF / Antennas,High-Gain RF Antennas,Dual IPEX/U.FL 2.4/5GHz & Cellular 5dBi Antennas,4,2.50,10.00,External antenna dome mounting for Wi-Fi AP & LTE signals
+Sensors,9-DOF System IMU,MPU-6050 / BNO055 Motion Sensor Module,1,8.00,8.00,Vehicle orientation attitude dynamics & vibration feedback
+Total Systems Cost,,,,,$359.50,Complete Hardware Stack Including Smartwatch & eSIM Integration

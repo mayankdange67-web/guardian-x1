@@ -1,0 +1,34 @@
+# ==============================================================================
+# GUARDIAN X-1 HAILO-8L NPU MODEL CONFIGURATION & ALLOCATION MANIFEST
+# ==============================================================================
+
+model:
+  name: yolov8n_tactical
+  framework: onnx
+  precision: int8
+  target_hardware: hailo8l
+  max_throughput_fps: 140
+
+input_layer:
+  name: images
+  shape: [1, 3, 640, 640]
+  format: RGB
+  normalization:
+    mean: [0.0, 0.0, 0.0]
+    std: [255.0, 255.0, 255.0]
+
+output_layers:
+  - name: output0
+    shape: [1, 84, 8400]
+    type: detection_bounding_box
+
+quantization:
+  quantization_algorithm: full_integer
+  calibration_batch_size: 16
+  calibration_steps: 64
+  per_channel_quantization: true
+
+npu_resource_limits:
+  max_power_watts: 2.5
+  max_latency_ms: 7.14
+  allocated_clusters: 4

@@ -1,0 +1,85 @@
+# ==============================================================================
+# GUARDIAN-X1 MACHINE LEARNING ENGINE & MODEL INFERENCE CONFIGURATION
+# ==============================================================================
+# Compute Engine: Hailo-8L NPU (26 TOPS) + Host Micro-NPU Accelerators
+# Edge Devices: Vehicle Core, ESP32 Network Bridge, Smartwatch, Smart Glasses
+# Display Output: 1.51" Transparent OLED SSD1309 (128x64 vector rendering)
+# ==============================================================================
+
+ml_engine:
+  global:
+    device_type: "hailo8l" # Hailo-8L 26 TOPS NPU accelerator
+    num_npu_cores: 1
+    memory_allocation_mb: 2048
+    enable_zero_copy_buffers: true
+    fallback_execution_provider: "CPU" # Fallback if NPU drops: CUDA, TensorRT, OpenVINO, CPU
+
+  # Machine Learning Network Link Predictor (ESP32 Network Routing Optimizer)
+  predictive_network_manager:
+    model_path: "models/onnx/link_quality_predictor.onnx"
+    eval_interval_ms: 100
+    predictive_handoff_enabled: true
+    signal_history_window: 20 # Evaluates last 20 packet RSSI/latency vectors to predict link drop
+
+  # Hailo-8L Tactical Object Recognition Pipeline
+  tactical_detector:
+    model_path: "models/hailo/yolov8n_tactical.hef"
+    input_width: 640
+    input_height: 640
+    confidence_threshold: 0.55
+    nms_threshold: 0.45
+    max_inference_latency_ms: 15.0
+    max_detections_per_frame: 30
+
+  # Soft Actor-Critic (SAC) Kinetic Mode Switching Policy
+  sac_hybrid_planner:
+    model_path: "models/onnx/sac_mode_policy.onnx"
+    observation_dim: 32
+    action_dim: 6
+    gamma: 0.99
+    tau: 0.005
+    alpha_learning_rate: 0.0003
+    policy_learning_rate: 0.0003
+    inference_frequency_hz: 50
+    max_inference_latency_ms: 5.0
+
+  # Vision Transformer Surface Friction & Slip Prediction
+  terrain_classifier:
+    model_path: "models/onnx/terrain_vit_nano.onnx"
+    input_channels: 4 # RGB + IMU acceleration fusion vector
+    friction_classes: ["asphalt", "gravel", "grass", "sand", "wet_surface"]
+    update_rate_hz: 20
+    max_inference_latency_ms: 10.0
+
+  # Smartwatch Micro-NPU Edge Machine Learning Specs
+  smartwatch_ml:
+    biometric_model_path: "models/onnx/watch_stress_micro.onnx"
+    stress_index_warning_level: 0.78
+    gesture_recognition_enabled: true
+    ble_telemetry_interval_ms: 100
+    power_saving_mode: true
+
+  # Smart Glasses Micro-NPU Edge Machine Learning Specs
+  smart_glasses_ml:
+    gaze_tracking_model_path: "models/onnx/glasses_gaze_nano.onnx"
+    target_bounding_box_overlay: true
+    hud_refresh_rate_hz: 60
+    low_power_threshold_pct: 15
+
+  # Voice AI & Local LLM Agent Pipeline (Ollama)
+  voice_ai:
+    stt_model: "whisper-tiny.en"
+    tts_model: "piper-en-low"
+    llm_model: "ollama/llama3.2:1b"
+    voice_command_confidence_threshold: 0.75
+    max_context_window_tokens: 2048
+
+  # Front 1.51" Transparent OLED SSD1309 Machine Learning HUD Output
+  transparent_oled_hud:
+    refresh_rate_hz: 30
+    render_mode: "vector_telemetry" # 128x64 optimized lightweight overlay
+    show_npu_tops_load: true
+    show_inference_latency: true
+    show_active_target_class: true
+    show_network_route: true # Displays "ROUTE: LOCAL_AP" or "ROUTE: LTE_CELL" on OLED
+    target_bounding_box_mode: "2d_corners"

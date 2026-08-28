@@ -1,0 +1,67 @@
+# Guardian X-1 Hardware Wiring & Pinout Specification
+
+## 1. Primary Microcontroller & SBC Pinout
+
+### Raspberry Pi 5 Pin Allocations
+
+| Pin Number | GPIO / Signal | Connected Component | Protocol / Function |
+|---|---|---|---|
+| **Pin 8** | GPIO 14 (TXD0) | ESP32 RX2 (Pin 16) | High-Speed Telemetry UART (921600 Baud) |
+| **Pin 10** | GPIO 15 (RXD0) | ESP32 TX2 (Pin 17) | High-Speed Telemetry UART (921600 Baud) |
+| **Pin 7** | GPIO 4 | ESP32 Hardware Interrupt | Emergency Hardware Safety Killswitch Line |
+| **Pin 19** | GPIO 10 (SPI0_MOSI)| SSD1309 OLED Master Out | 1.51" Transparent OLED Video Data |
+| **Pin 23** | GPIO 11 (SPI0_SCLK)| SSD1309 OLED Clock | SPI Bus Clock Signal (8 MHz) |
+| **Pin 24** | GPIO 8 (SPI0_CE0_N)| SSD1309 OLED Chip Select| OLED SPI Chip Select |
+| **Pin 22** | GPIO 25 | SSD1309 OLED Data/Command| DC Control Line |
+| **Pin 37** | GPIO 26 | SSD1309 OLED Reset | Hardware Reset Control |
+| **Pin 32** | GPIO 12 (PWM0) | Motor Driver Left | Motor Speed Control (PWM) |
+| **Pin 33** | GPIO 13 (PWM1) | Motor Driver Right | Motor Speed Control (PWM) |
+| **Pin 16** | GPIO 23 | Motor Driver Dir Left | H-Bridge Directional Logic |
+| **Pin 18** | GPIO 24 | Motor Driver Dir Right | H-Bridge Directional Logic |
+| **Pin 11** | GPIO 17 | Left Encoder A | Quadrature Encoder Feedback |
+| **Pin 13** | GPIO 27 | Left Encoder B | Quadrature Encoder Feedback |
+| **Pin 15** | GPIO 22 | Right Encoder A | Quadrature Encoder Feedback |
+| **Pin 29** | GPIO 5 | Right Encoder B | Quadrature Encoder Feedback |
+
+---
+
+## 2. ESP32 Network Co-Processor Wiring
+
+```text
++-----------------------+              +------------------------+
+|   ESP32-WROOM-32      |              |   Raspberry Pi 5       |
+|                       |              |                        |
+|  GPIO 16 (RX2)  <-----+--------------+--  Pin 8  (GPIO 14 TXD)|
+|  GPIO 17 (TX2)  ----->+--------------+--  Pin 10 (GPIO 15 RXD)|
+|  GPIO 4 (Watchdog) --->+--------------+--  Pin 7  (GPIO 4)   |
+|  GND            <-----+--------------+--  GND                 |
++-----------+-----------+              +------------------------+
+            |
+            | AT Serial Commands (UART1)
+            v
++-----------------------+
+| SIM LTE Modulated MCU |
+|  TXD  --------------> | ESP32 GPIO 18 (RX1)
+|  RXD  <-------------- | ESP32 GPIO 19 (TX1)
++-----------------------+
+
+3. Power Distribution Architecture
+
++-------------------------------------------------------------------------+
+|                              POWER DISTRIBUTION                         |
+|                                                                         |
+|  +--------------------+                                                 |
+|  | 3S LiPo Battery    |                                                 |
+|  | (11.1V - 12.6V Main) |                                                 |
+|  +---------+----------+                                                 |
+|            |                                                            |
+|            +----> [12V Main Bus] ---------> H-Bridge Dual Motor Driver |
+|            |                                                            |
+|            +----> [Step-Down 5V/5A Buck] --> Pi 5 Power (USB-C Header)  |
+|            |                                 |                          |
+|            |                                 +-> Verbatim Vx500 SSD     |
+|            |                                 +-> Hailo-8L M.2 Slot      |
+|            |                                                            |
+|            +----> [Step-Down 5V/3A Buck] --> ESP32 VIN & Antenna        |
+|                                              SSD1309 Transparent OLED   |
++-------------------------------------------------------------------------+

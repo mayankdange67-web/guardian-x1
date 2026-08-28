@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# GUARDIAN X-1 MASTER SYSTEM BOOT SCRIPT
+# ==============================================================================
+
+set -e
+
+# Color Output Formatting
+RED='\031[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${GREEN}==========================================================${NC}"
+echo -e "${GREEN}       STARTING GUARDIAN X-1 AUTONOMOUS SYSTEM            ${NC}"
+echo -e "${GREEN}==========================================================${NC}"
+
+# 1. Verify External SSD Mount Point (Verbatim Vx500 240GB)
+MOUNT_POINT="/mnt/verbatim_vx500"
+if mountpoint -q "$MOUNT_POINT"; then
+    echo -e "[${GREEN}OK${NC}] Verbatim Vx500 SSD mounted at ${MOUNT_POINT}"
+else
+    echo -e "[${YELLOW}WARN${NC}] SSD not mounted. Attempting mounting /dev/sda1 -> ${MOUNT_POINT}..."
+    sudo mkdir -p "$MOUNT_POINT"
+    sudo mount /dev/sda1 "$MOUNT_POINT" || echo -e "[${RED}FAIL${NC}] Could not mount SSD. Operating in fallback log mode."
+fi
+
+# 2. Configure ESP32-S3 High-Speed Serial Port
+echo -e "[${GREEN}INFO${NC}] Configuring Raspberry Pi 5 UART (/dev/ttyAMA0 @ 921600 Baud)..."
+sudo stty -F /dev/ttyAMA0 921600 raw -echo
+
+# 3. Load Hailo-8L NPU PCIe Kernel Driver
+echo -e "[${GREEN}INFO${NC}] Initializing Hailo-8L NPU PCIe driver..."
+if lsmod | grep -q "hailo_pci"; then
+    echo -e "[${GREEN}OK${NC}] Hailo-8L NPU driver loaded."
+else
+    sudo modprobe hailo_pci || echo -e "[${YELLOW}WARN${NC}] Hailo-8L driver modprobe failed. Check M.2 HAT connection."
+fi
+
+# 4. Source ROS 2 Jazzy Environment & Workspace
+source /opt/ros/jazzy/setup.bash
+if [ -f "install/setup.bash" ]; then
+    source install/setup.bash
+fi
+
+# 5. Launch ROS 2 Nodes & Subsystems
+echo -e "[${GREEN}SUCCESS${NC}] Launching Guardian X-1 ROS 2 Orchestrator..."
+ros2 launch guardian_x1 bringup.launch.py \
+    config_params:=config/control_params.yaml \
+    ml_params:=config/ml_config.yaml

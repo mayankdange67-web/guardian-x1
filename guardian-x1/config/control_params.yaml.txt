@@ -1,0 +1,87 @@
+# ==============================================================================
+# GUARDIAN-X1 SYSTEM CONTROL PARAMETERS & HARDWARE CONFIGURATION
+# ==============================================================================
+# Primary Compute: Raspberry Pi 5 + Hailo-8L NPU (26 TOPS)
+# Network Co-Processor: ESP32-WROOM-32 / ESP32-S3 (Custom AP + SIM Modem Manager)
+# Primary Storage: Verbatim Vx500 240GB External SSD (USB 3.2 Gen 2)
+# Front Display: 1.51" Transparent OLED Display Module (SSD1309, 128x64, SPI)
+# ==============================================================================
+
+/**:
+  ros__parameters:
+    system:
+      robot_name: "guardian_x1"
+      operational_mode: "hybrid_auto" # Options: ground, aerial, hybrid_auto
+      main_loop_frequency_hz: 100
+      watchdog_timeout_ms: 250
+      enable_ml_telemetry_stream: true
+
+    # ESP32 Co-Processor & Dual-Path Network Handoff Architecture
+    esp32_network_bridge:
+      uart_port: "/dev/ttyAMA0"
+      baudrate: 921600
+      heartbeat_timeout_ms: 150
+      custom_network_ssid: "GUARDIAN_X1_DIRECT"
+      local_rssi_threshold_dbm: -78 # Below this RSSI, switch to LTE SIM route
+      network_handoff_hysteresis_sec: 2.0 # Time to hold LTE before switching back to local network
+      auto_fallback_to_lte: true
+      hardware_watchdog_gpio_pin: 4 # Physical interrupt pin driven by ESP32
+
+    # Drivetrain Kinematics & Machine Learning Control Loop
+    drivetrain:
+      wheel_radius_m: 0.045
+      track_width_m: 0.220
+      max_linear_velocity_mps: 2.5
+      max_angular_velocity_radps: 4.0
+      max_linear_acceleration_mps2: 3.0
+      neural_pid:
+        kp_linear: 1.85
+        ki_linear: 0.12
+        kd_linear: 0.05
+        kp_angular: 2.10
+        ki_angular: 0.15
+        kd_angular: 0.08
+        adaptive_gain_scaling: true # Dynamically scales PID based on Machine Learning surface slip model
+
+    # Hardware Interfaces & Pinout Mapping (Pi 5 Free Pins Saved by ESP32)
+    hardware_interfaces:
+      motor_driver:
+        pwm_left_pin: 12
+        pwm_right_pin: 13
+        dir_left_pin: 23
+        dir_right_pin: 24
+        encoder_left_a: 17
+        encoder_left_b: 27
+        encoder_right_a: 22
+        encoder_right_b: 5
+      mavlink_flight_bridge:
+        port: "/dev/ttyUSB0"
+        baudrate: 921600
+        heartbeat_interval_hz: 10
+      ssd1309_transparent_oled:
+        spi_bus: 0
+        spi_device: 0
+        dc_pin: 25
+        rst_pin: 26
+        spi_frequency_hz: 8000000
+        width: 128
+        height: 64
+        contrast_level: 255
+
+    # Machine Learning Safety Overrides & Dynamic Fallbacks
+    ml_safety_overrides:
+      anomaly_confidence_threshold: 0.82
+      emergency_brake_distance_m: 0.45
+      max_allowed_roll_deg: 35.0
+      max_allowed_pitch_deg: 35.0
+      manual_override_priority: true
+
+    # Data Storage & Telemetry Logging (Verbatim Vx500 External SSD)
+    storage:
+      mount_point: "/mnt/verbatim_vx500"
+      log_directory: "/mnt/verbatim_vx500/logs/rosbags"
+      ml_cache_directory: "/mnt/verbatim_vx500/cache/inferences"
+      write_buffer_kb: 4096
+      auto_flush_interval_sec: 2.0
+      min_free_space_mb: 2048
+      storage_alert_threshold_pct: 90.0

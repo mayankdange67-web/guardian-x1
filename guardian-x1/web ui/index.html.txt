@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="styles.css"></head>
+<body>
+    <div class="container">
+        <h1>Guardian X-1 Dashboard</h1>
+        <button onclick="console.log('Takeoff triggered')">Takeoff</button>
+        <button class="danger" onclick="console.log('DISARM triggered')">DISARM</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
